@@ -43,7 +43,7 @@
 
 (defn authenticate [username password]
   (when (and (= username "webdriver")
-           (= password "test"))
+             (= password "test"))
     {:username username}))
 
 (def routes
@@ -62,7 +62,7 @@
 (defn -main
   [& [port]]
   (let [port (Integer. (or port (env :port) 5000))]
-    (jetty/run-jetty (-> #'app
+    (jetty/run-jetty (-> #'routes
                          ((if (env :production)
                             wrap-error-page
                             trace/wrap-stacktrace)))
